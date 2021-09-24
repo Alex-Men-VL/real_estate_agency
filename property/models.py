@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
@@ -50,3 +51,16 @@ class Flat(models.Model):
 
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
+
+
+class Claim(models.Model):
+    owner = models.ForeignKey(User,
+                              verbose_name='Кто жаловался',
+                              on_delete=models.CASCADE,
+                              null=True)
+
+    flat = models.ForeignKey(Flat,
+                             verbose_name='Квартира, на которую пожаловались',
+                             on_delete=models.SET_NULL,
+                             null=True)
+    claim_text = models.TextField('Текст жалобы')
