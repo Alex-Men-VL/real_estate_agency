@@ -76,7 +76,8 @@ class Claim(models.Model):
     flat = models.ForeignKey(Flat,
                              verbose_name='Квартира, на которую пожаловались',
                              on_delete=models.SET_NULL,
-                             null=True)
+                             null=True,
+                             related_name='claims')
     claim_text = models.TextField('Текст жалобы')
 
 
