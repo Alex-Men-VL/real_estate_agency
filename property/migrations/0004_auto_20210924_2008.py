@@ -7,7 +7,7 @@ def fill_fields(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     flats = Flat.objects.all()
     for flat in flats:
-        flat.new_building = True if flat.construction_year >= 2015 else False
+        flat.new_building = (flat.construction_year >= 2015)
         flat.save()
 
 
